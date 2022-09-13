@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
+import Swal from "sweetalert2";
 
 function Login() {
   const [err, setErr] = useState(false);
@@ -12,7 +13,12 @@ function Login() {
     const password = e.target[1].value;
     try {
       signInWithEmailAndPassword(auth, email, password);
-      navigate("/");
+      Swal.fire({
+        title: "Login success!",
+        icon: "success",
+      }).then(() => {
+        navigate("/");
+      });
     } catch (error) {
       setErr(true);
     }
