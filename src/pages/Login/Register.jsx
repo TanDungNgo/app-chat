@@ -5,7 +5,7 @@ import { auth, db, storage } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
-import "./Form.scss"
+import "./Form.scss";
 import Swal from "sweetalert2";
 function Register() {
   const [displayName, setdisplayName] = useState("");
@@ -21,6 +21,7 @@ function Register() {
         text: "Please upload an avatar image!",
         icon: "info",
       });
+      return;
     }
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
