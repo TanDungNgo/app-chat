@@ -87,7 +87,12 @@ function Input() {
         <label htmlFor="file">
           <img src={img}></img>
         </label>
-        <button onClick={handleSend}>Send</button>
+        <button onClick={handleSend}>
+          <p>Send</p>
+          <img
+            src="https://i.cloudup.com/gBzAn-oW_S-2000x2000.png"
+          ></img>
+        </button>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
-import Chat from "../components/Chat";
-import Sidebar from "../components/Sidebar";
+import Chat from "../../components/Chat";
+import Sidebar from "../../components/Sidebar";
+import "./Home.scss"
 
 function Home() {
   return (

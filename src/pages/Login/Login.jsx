@@ -1,7 +1,8 @@
 import { useState } from "react";
+import "./Form.scss"
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import Swal from "sweetalert2";
 
 function Login() {
@@ -26,7 +27,7 @@ function Login() {
   return (
     <div className="formContainer">
       <div className="formWrapper">
-        <span className="logo">App Chat</span>
+        <span className="logo">Chat with friends</span>
         <span className="title">Login</span>
         <form onSubmit={handleSubmit}>
           <input type="email" placeholder="email" />

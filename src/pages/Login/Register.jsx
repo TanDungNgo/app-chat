@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import addAvater from "../img/addAvatar.png";
+import addAvater from "../../img/addAvatar.png";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, db, storage } from "../firebase";
+import { auth, db, storage } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
+import "./Form.scss"
+import Swal from "sweetalert2";
 function Register() {
   const [displayName, setdisplayName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,7 +17,10 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file) {
-      alert("Please upload an image first!");
+      Swal.fire({
+        text: "Please upload an avatar image!",
+        icon: "info",
+      });
     }
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -39,7 +44,12 @@ function Register() {
               photoURL: downloadURL,
             });
             await setDoc(doc(db, "userChats", res.user.uid), {});
-            navigate("/");
+            Swal.fire({
+              title: "Signin success!",
+              icon: "success",
+            }).then(() => {
+              navigate("/");
+            });
           });
         }
       );
@@ -50,7 +60,7 @@ function Register() {
   return (
     <div className="formContainer">
       <div className="formWrapper">
-        <span className="logo">App Chat</span>
+        <span className="logo">Chat with friends</span>
         <span className="title">Register</span>
         <form onSubmit={handleSubmit}>
           <input
